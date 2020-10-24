@@ -22,23 +22,49 @@ class BinarySearchTree {
     }
 
     let current = this.root
-    if(value === current.value) return undefined
-
-    if(value > current.value) {
-      if(current.right) {
-        current = current.right
-        return
-      } else {
-        current.right = node
+    while (current) {
+      if(value === current.value) {
+        return;
       }
-    } else {
-      if(current.left) {
+
+      //Insert to the right
+      if(value > current.value) {
+        if(!current.right) {
+          current.right = node
+          break
+        }
+        current = current.right
+      }
+      
+      //Insert to the left
+      if(value < current.value){
+        if(!current.left) {
+          current.left = node
+          break;
+        } 
         current = current.left
-        return
-      } else {
-        current.left = node
+
       }
     }
+  }
+  
+
+  find(value){
+    if(!this.root) return 'Empty tree'
+
+    let current = this.root;
+
+    while(current){
+      if(value === current.value) return current;
+
+      if(current.right && value > current.value){
+        current = current.right;
+      }else{
+        current = current.left;
+      }
+    }
+
+    return false
   }
 }
 
@@ -48,5 +74,7 @@ BTS.insert(4)
 BTS.insert(1)
 BTS.insert(5)
 BTS.insert(10)
+BTS.insert(9)
 
 console.log(BTS.root)
+console.log(BTS.find(9))
