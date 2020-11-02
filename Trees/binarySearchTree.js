@@ -66,6 +66,16 @@ class BinarySearchTree {
 
     return false
   }
+
+  contains(value) {
+    const found = this.find(value);
+
+    if(found) {
+      return true;
+    }
+
+    return false;
+  }
 }
 
 let BTS = new BinarySearchTree()
@@ -78,3 +88,5 @@ BTS.insert(9)
 
 console.log(BTS.root)
 console.log(BTS.find(9))
+
+console.log(BTS.contains(1))
